@@ -212,6 +212,53 @@
   .doc-line-row span{font-size:13px; color:var(--ink-faint);}
   .sample-ctas{display:flex; gap:12px; margin-top:24px; flex-wrap:wrap;}
 
+  /* Full inline sample brief */
+  .full-sample{
+    display:none; margin-top:64px; padding-top:48px; border-top:1px solid var(--line);
+    position:relative;
+  }
+  .full-sample.open{display:block;}
+  .full-sample-head{max-width:640px; margin-bottom:36px; position:relative;}
+  .full-sample-head h3{font-size:28px; margin-bottom:10px;}
+  .full-sample-head .btn{margin-top:10px;}
+  .fs-row{
+    display:flex; gap:20px; padding:22px 18px; border-radius:12px; cursor:default;
+    border-bottom:1px dashed var(--line);
+    transition:transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+  .fs-row:last-of-type{border-bottom:none;}
+  .fs-row:hover{
+    transform:translateX(8px);
+    background:var(--white);
+    box-shadow:var(--shadow-lift);
+  }
+  .fs-num{
+    font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent); flex:none;
+    padding-top:3px; width:24px;
+  }
+  .fs-body h4{font-size:16.5px; margin-bottom:6px;}
+  .fs-body p{font-size:14px; margin:0; color:var(--ink-soft);}
+  .fs-disclaimer{
+    margin-top:28px; padding:20px 22px; background:var(--bg-alt); border-radius:12px;
+  }
+  .fs-disclaimer h4{font-size:14px; margin-bottom:6px;}
+  .fs-disclaimer p{font-size:13px; margin:0;}
+
+  /* Floating cursor-follow video preview, one per section on hover */
+  .fs-video-float{
+    position:fixed; z-index:80; width:200px; border-radius:10px; overflow:hidden;
+    box-shadow:0 16px 34px rgba(0,0,0,.28); border:1px solid var(--line);
+    pointer-events:none; opacity:0; transform:translateY(6px) scale(.97);
+    transition:opacity .15s ease, transform .15s ease; background:var(--panel-dark);
+  }
+  .fs-video-float.show{opacity:1; transform:translateY(0) scale(1);}
+  .fs-video-float video{width:100%; display:block;}
+  .fs-video-float .fs-video-label{
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--white);
+    padding:6px 9px; background:var(--panel-dark);
+  }
+  @media (max-width:720px){ .fs-video-float{display:none;} }
+
   /* After checkout */
   .after-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:16px;}
   @media (max-width:960px){ .after-grid{grid-template-columns:1fr 1fr;} }
@@ -353,6 +400,14 @@
 </style>
 </head>
 <body>
+
+<div class="fs-video-float" id="fs-video-float">
+  <video autoplay muted loop playsinline>
+    <!-- Placeholder clip — swap for a short (3–6s) native clip specific to each brief section -->
+    <source src="https://labs.google/fx/api/og-video/shared/8e2c5835-8fe7-4dcf-8262-824ceef89938" type="video/mp4">
+  </video>
+  <div class="fs-video-label" id="fs-video-label">Preview</div>
+</div>
 
 <header>
   <div class="wrap navbar">
@@ -519,7 +574,7 @@
           </div>
 
           <div class="sample-ctas">
-            <a href="/sample-brief" class="btn btn-outline btn-sm">Open full sample brief</a>
+            <a href="#full-sample" id="open-full-sample" class="btn btn-outline btn-sm">Open full sample brief</a>
           </div>
         </div>
 
@@ -533,6 +588,86 @@
           </ul>
         </div>
       </div>
+
+      <!-- FULL SAMPLE BRIEF (hidden until "Open full sample brief" is clicked) -->
+      <div class="full-sample" id="full-sample">
+        <div class="full-sample-head">
+          <div class="eyebrow">Fictional sample</div>
+          <h3>Preview Your Interview Brief</h3>
+          <p>This sample uses generic content only. Real briefs are built from the customer's resume, public job posting, and intake notes.</p>
+          <button class="btn btn-outline btn-sm" id="close-full-sample">Close preview</button>
+        </div>
+
+        <div class="fs-row" data-video="exec-summary">
+          <div class="fs-num">01</div>
+          <div class="fs-body">
+            <h4>Executive Summary</h4>
+            <p>This fictional candidate should position their operations background around ownership, cross-functional communication, and measurable process improvement. The strongest interview path is to connect project outcomes to the target role requirements in plain language.</p>
+          </div>
+        </div>
+
+        <div class="fs-row" data-video="opening-pitch">
+          <div class="fs-num">02</div>
+          <div class="fs-body">
+            <h4>Opening Pitch</h4>
+            <p>I have built my career around making complex operational work easier to understand, track, and improve. In my last role, I worked across teams to resolve process gaps, improve reporting quality, and keep stakeholders aligned. This role stood out because it combines structured problem solving, communication, and accountability for outcomes.</p>
+          </div>
+        </div>
+
+        <div class="fs-row" data-video="alignment">
+          <div class="fs-num">03</div>
+          <div class="fs-body">
+            <h4>Resume-to-Role Alignment</h4>
+            <p>The resume shows relevant experience in stakeholder management, issue resolution, and operational reporting. The candidate should prepare specific examples that show scope, tools used, constraints, and measurable impact.</p>
+          </div>
+        </div>
+
+        <div class="fs-row" data-video="questions">
+          <div class="fs-num">04</div>
+          <div class="fs-body">
+            <h4>Likely Interview Questions</h4>
+            <p>Expect questions about prioritization, ambiguity, cross-functional conflict, technical ramp-up, and why this role is the right next move. Prepare concise answers for: Tell me about yourself, why this role, a time you improved a process, a difficult stakeholder situation, a mistake you learned from, and how you measure success.</p>
+          </div>
+        </div>
+
+        <div class="fs-row" data-video="star-story">
+          <div class="fs-num">05</div>
+          <div class="fs-body">
+            <h4>STAR Story Example</h4>
+            <p><strong>Situation:</strong> A recurring reporting delay caused confusion between operations and leadership. <strong>Task:</strong> The candidate needed to clarify ownership and make the process easier to repeat. <strong>Action:</strong> They mapped the handoff, created a weekly tracker, and set a short review cadence with stakeholders. <strong>Result:</strong> The team reduced back-and-forth, delivered updates more predictably, and gave leadership a clearer view of risk.</p>
+          </div>
+        </div>
+
+        <div class="fs-row" data-video="strengths">
+          <div class="fs-num">06</div>
+          <div class="fs-body">
+            <h4>Strengths to Emphasize</h4>
+            <p>Emphasize structured thinking, ownership, practical communication, and ability to connect details to business outcomes.</p>
+          </div>
+        </div>
+
+        <div class="fs-row" data-video="gaps">
+          <div class="fs-num">07</div>
+          <div class="fs-body">
+            <h4>Gaps to Prepare For</h4>
+            <p>Prepare honest language for any missing keywords, limited direct industry exposure, or leadership scope that is adjacent rather than identical to the job posting.</p>
+          </div>
+        </div>
+
+        <div class="fs-row" data-video="checklist">
+          <div class="fs-num">08</div>
+          <div class="fs-body">
+            <h4>Final Prep Checklist</h4>
+            <p>Practice the opening pitch aloud, choose three STAR stories, mark the highest-risk job requirements, prepare two interviewer questions, confirm the interview time and format, and avoid sharing confidential employer information.</p>
+          </div>
+        </div>
+
+        <div class="fs-disclaimer">
+          <h4>No outcome guarantees</h4>
+          <p>AnswerInsight provides interview preparation materials only. It does not guarantee interviews, job offers, promotions, or hiring outcomes.</p>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -873,6 +1008,48 @@
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
       if (!isOpen) item.classList.add('open');
+    });
+  });
+  // Open / close the full inline sample brief
+  const fullSample = document.getElementById('full-sample');
+  const openBtn = document.getElementById('open-full-sample');
+  const closeBtn = document.getElementById('close-full-sample');
+  openBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    fullSample.classList.add('open');
+    fullSample.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  closeBtn.addEventListener('click', () => {
+    fullSample.classList.remove('open');
+    document.getElementById('sample').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // Section labels for the floating preview video
+  const fsLabels = {
+    'exec-summary': 'Preview: Executive Summary',
+    'opening-pitch': 'Preview: Opening Pitch',
+    'alignment': 'Preview: Resume-to-Role Alignment',
+    'questions': 'Preview: Likely Questions',
+    'star-story': 'Preview: STAR Story Example',
+    'strengths': 'Preview: Strengths to Emphasize',
+    'gaps': 'Preview: Gaps to Prepare For',
+    'checklist': 'Preview: Final Prep Checklist'
+  };
+
+  // Floating cursor-follow video, one per hovered section
+  const fsFloat = document.getElementById('fs-video-float');
+  const fsLabel = document.getElementById('fs-video-label');
+  document.querySelectorAll('.fs-row').forEach(row => {
+    row.addEventListener('mouseenter', () => {
+      fsLabel.textContent = fsLabels[row.dataset.video] || 'Preview';
+      fsFloat.classList.add('show');
+    });
+    row.addEventListener('mouseleave', () => {
+      fsFloat.classList.remove('show');
+    });
+    row.addEventListener('mousemove', (e) => {
+      fsFloat.style.left = `${e.clientX + 24}px`;
+      fsFloat.style.top = `${e.clientY - 20}px`;
     });
   });
 </script>
