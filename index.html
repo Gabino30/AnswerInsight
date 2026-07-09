@@ -4,648 +4,875 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AnswerInsight — Role-Specific Interview Prep</title>
+<meta name="description" content="AnswerInsight turns your resume and the job posting into a focused interview brief — likely questions, STAR stories, and talking points, delivered within 24 hours.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#0F2A47;
-    --navy-2:#123458;
-    --blue:#185FA5;
-    --blue-light:#4C86C9;
-    --teal:#2FBF95;
-    --bg:#F6F8FB;
-    --card:#FFFFFF;
-    --text:#1B2430;
-    --muted:#5B6572;
-    --border:#E3E8EF;
-    --shadow: 0 10px 30px rgba(15,42,71,0.08);
-    --shadow-lg: 0 20px 45px rgba(15,42,71,0.16);
+    --bg:#F7F5EF;
+    --bg-alt:#EFEADB;
+    --panel-dark:#12181A;
+    --panel-dark-2:#1B2426;
+    --ink:#14181A;
+    --ink-soft:#4B5563;
+    --ink-faint:#7A8079;
+    --accent:#1F6F5C;
+    --accent-deep:#154F42;
+    --accent-warm:#C98A3E;
+    --line:#DDD7C8;
+    --line-dark:#2C3436;
+    --white:#FFFFFF;
+    --radius:14px;
+    --max:1120px;
+    --shadow-lift:0 20px 45px rgba(20,24,26,.10);
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
+  }
   body{
     margin:0;
-    font-family:'Inter',sans-serif;
-    color:var(--text);
     background:var(--bg);
-    line-height:1.6;
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
   }
   h1,h2,h3,h4{
-    font-family:'Sora',sans-serif;
-    margin:0;
-    color:var(--navy);
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0 0 .5em;
+    color:var(--ink);
   }
-  a{text-decoration:none;color:inherit;}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
-  section{padding:88px 0;}
+  p{margin:0 0 1em; color:var(--ink-soft);}
+  a{color:inherit; text-decoration:none;}
+  img,svg{display:block; max-width:100%;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
   .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:.14em;
     text-transform:uppercase;
-    letter-spacing:2.5px;
-    font-size:13px;
-    font-weight:600;
-    color:var(--teal);
-  }
-
-  /* ---------- NAV ---------- */
-  header{
-    position:sticky;top:0;z-index:50;
-    background:rgba(15,42,71,0.96);
-    backdrop-filter:blur(6px);
-  }
-  nav.wrap{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:18px 24px;
-  }
-  .logo{
-    font-family:'Sora',sans-serif;
-    font-size:23px;
-    font-weight:600;
-    color:#fff;
-    letter-spacing:-0.3px;
-  }
-  .logo b{
-    font-weight:800;
-    color:var(--teal);
-  }
-  .nav-links{display:flex;gap:32px;align-items:center;}
-  .nav-links a{
-    color:#CBD8E8;
-    font-size:15px;
-    font-weight:500;
-    transition:color .2s;
-  }
-  .nav-links a:hover{color:#fff;}
-  .nav-cta{
-    background:var(--teal);
-    color:var(--navy) !important;
-    padding:10px 20px;
-    border-radius:8px;
-    font-weight:700 !important;
-  }
-
-  /* ---------- HERO ---------- */
-  .hero{
-    background:linear-gradient(160deg,var(--navy) 0%, var(--navy-2) 55%, #0B2038 100%);
-    padding:100px 0 90px;
-    position:relative;
-    overflow:hidden;
-  }
-  .hero::after{
-    content:"";
-    position:absolute;
-    top:-120px;right:-120px;
-    width:420px;height:420px;
-    border-radius:50%;
-    background:radial-gradient(circle, rgba(47,191,149,0.16), transparent 70%);
-  }
-  .hero-inner{position:relative;z-index:2;max-width:720px;}
-  .hero h1{
-    color:#fff;
-    font-size:46px;
-    line-height:1.15;
-    margin:16px 0 20px;
-    letter-spacing:-0.5px;
-  }
-  .hero p.sub{
-    color:#B9C7D9;
-    font-size:18px;
-    max-width:600px;
-    margin-bottom:34px;
-  }
-  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
-  .btn{
-    display:inline-block;
-    padding:14px 26px;
-    border-radius:9px;
-    font-weight:700;
-    font-size:15px;
-    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
-    cursor:pointer;
-    border:none;
-  }
-  .btn-primary{
-    background:var(--teal);
-    color:var(--navy);
-  }
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(47,191,149,0.35);}
-  .btn-ghost{
-    background:transparent;
-    color:#fff;
-    border:1.5px solid rgba(255,255,255,0.35);
-  }
-  .btn-ghost:hover{background:rgba(255,255,255,0.08);}
-
-  /* ---------- TRUST STRIP ---------- */
-  .trust-strip{
-    background:var(--navy);
-    border-top:1px solid rgba(255,255,255,0.08);
-    padding:26px 0 48px;
-  }
-  .trust-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-  }
-  .trust-item{
-    display:flex;align-items:center;gap:10px;
-    color:#CBD8E8;
-    font-size:14px;
-    font-weight:500;
-  }
-  .trust-item svg{flex-shrink:0;}
-
-  /* ---------- MISSION ---------- */
-  .mission{
-    text-align:center;
-    max-width:720px;
-    margin:0 auto;
-  }
-  .mission h2{
-    font-size:32px;
-    line-height:1.3;
-  }
-  .mission p{
-    color:var(--muted);
-    font-size:17px;
-    margin-top:18px;
-  }
-
-  /* ---------- HOW IT WORKS ---------- */
-  .section-head{
-    max-width:600px;
-    margin:0 auto 48px;
-    text-align:center;
-  }
-  .section-head h2{font-size:32px;margin-top:10px;}
-  .section-head p{color:var(--muted);margin-top:12px;font-size:16px;}
-  .hint{
-    text-align:center;
-    font-size:13px;
-    color:var(--muted);
-    margin-top:-28px;
-    margin-bottom:44px;
-  }
-  .steps{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:24px;
-  }
-  .step-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:30px 26px;
-    cursor:pointer;
-    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  }
-  .step-card:hover, .step-card.is-open{
-    transform:translateY(-8px);
-    box-shadow:var(--shadow-lg);
-    border-color:var(--blue-light);
-  }
-  .step-num{
+    color:var(--accent);
     display:inline-flex;
-    align-items:center;justify-content:center;
-    width:36px;height:36px;
-    border-radius:50%;
-    background:var(--navy);
-    color:var(--teal);
-    font-family:'Sora',sans-serif;
-    font-weight:700;
-    font-size:15px;
-    margin-bottom:16px;
+    align-items:center;
+    gap:8px;
+    margin-bottom:14px;
   }
-  .step-card h3{font-size:19px;margin-bottom:8px;}
-  .step-card p.base{color:var(--muted);font-size:14.5px;}
-  .step-detail{
-    max-height:0;
-    opacity:0;
-    overflow:hidden;
-    transition:max-height .35s ease, opacity .3s ease, margin-top .35s ease;
-    font-size:14.5px;
-    color:var(--text);
-    border-top:1px solid var(--border);
-    margin-top:0;
-  }
-  .step-card:hover .step-detail, .step-card.is-open .step-detail{
-    max-height:500px;
-    opacity:1;
-    margin-top:16px;
-    padding-top:16px;
-  }
+  .eyebrow::before{content:""; width:16px; height:1px; background:var(--accent);}
+  section{padding:96px 0;}
+  @media (max-width:720px){ section{padding:64px 0;} }
+  .section-head{max-width:640px; margin-bottom:48px;}
+  .section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
 
-  /* ---------- INCLUDES ---------- */
-  .includes{
-    background:var(--card);
-    border-radius:20px;
-    padding:56px;
-    box-shadow:var(--shadow);
+  /* Buttons */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:14px 26px; border-radius:999px; font-weight:600; font-size:15px;
+    cursor:pointer; border:1px solid transparent; transition:transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+    white-space:nowrap;
   }
-  .includes-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:16px 32px;
-    margin-top:32px;
-  }
-  .includes-item{
-    display:flex;gap:12px;align-items:flex-start;
-    font-size:15.5px;
-  }
-  .includes-item svg{flex-shrink:0;margin-top:2px;}
+  .btn-primary{background:var(--ink); color:var(--white);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:var(--shadow-lift);}
+  .btn-outline{background:transparent; color:var(--ink); border-color:var(--line);}
+  .btn-outline:hover{border-color:var(--ink); transform:translateY(-2px);}
+  .btn-accent{background:var(--accent); color:var(--white);}
+  .btn-accent:hover{background:var(--accent-deep); transform:translateY(-2px); box-shadow:var(--shadow-lift);}
+  .btn-paypal{background:#FFC439; color:#111; border-color:#FFC439;}
+  .btn-paypal:hover{background:#ffb300; transform:translateY(-2px);}
+  .btn-sm{padding:10px 18px; font-size:13.5px;}
+  .btn-block{width:100%;}
 
-  /* ---------- ABOUT / TRUST ---------- */
-  .about{
-    background:linear-gradient(160deg,#0F2A47,#123458);
-    border-radius:24px;
-    padding:64px;
-    color:#fff;
+  /* Nav */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(247,245,239,.86); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
   }
-  .about h2{color:#fff;font-size:30px;max-width:560px;}
-  .about p{color:#B9C7D9;font-size:16px;margin-top:18px;max-width:640px;}
-  .about-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:24px;
-    margin-top:44px;
+  .navbar{display:flex; align-items:center; justify-content:space-between; padding:18px 0;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:19px;}
+  .logo-tab{
+    width:22px; height:26px; border-radius:4px 8px 4px 4px;
+    background:var(--accent); position:relative; flex:none;
   }
-  .about-card{
-    background:rgba(255,255,255,0.06);
-    border:1px solid rgba(255,255,255,0.12);
-    border-radius:14px;
-    padding:22px 18px;
-  }
-  .about-card svg{margin-bottom:10px;}
-  .about-card h4{color:#fff;font-size:15px;margin-bottom:6px;}
-  .about-card p{color:#AEC0D6;font-size:13.5px;margin:0;}
-
-  /* ---------- PACKAGES ---------- */
-  .packages{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:24px;
-    align-items:start;
-  }
-  .pkg-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:32px 28px;
-    position:relative;
-    cursor:pointer;
-    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  }
-  .pkg-card:hover, .pkg-card.is-open{
-    transform:translateY(-10px) scale(1.015);
-    box-shadow:var(--shadow-lg);
-    border-color:var(--blue);
-    z-index:2;
-  }
-  .pkg-card.featured{
-    border-color:var(--teal);
-    box-shadow:0 14px 34px rgba(47,191,149,0.15);
-  }
-  .badge{
-    position:absolute;top:-13px;left:28px;
-    background:var(--teal);
-    color:var(--navy);
-    font-size:12px;
-    font-weight:700;
-    padding:5px 12px;
-    border-radius:999px;
-    letter-spacing:0.3px;
-  }
-  .pkg-card h3{font-size:20px;margin-bottom:6px;}
-  .price{
-    font-family:'Sora',sans-serif;
-    font-size:36px;
-    font-weight:800;
-    color:var(--navy);
-    margin:6px 0 14px;
-  }
-  .pkg-desc{color:var(--muted);font-size:14.5px;margin-bottom:18px;}
-  .pkg-list{list-style:none;padding:0;margin:0 0 22px;}
-  .pkg-list li{
-    font-size:14.5px;
-    padding:7px 0;
-    padding-left:24px;
-    position:relative;
-    color:var(--text);
-  }
-  .pkg-list li::before{
-    content:"✓";
-    position:absolute;left:0;
-    color:var(--teal);
-    font-weight:700;
-  }
-  .pkg-detail{
-    max-height:0;
-    opacity:0;
-    overflow:hidden;
-    transition:max-height .35s ease, opacity .3s ease, margin-top .35s ease, padding-top .35s ease;
-    font-size:13.5px;
-    color:var(--muted);
-    border-top:1px dashed var(--border);
-  }
-  .pkg-card:hover .pkg-detail, .pkg-card.is-open .pkg-detail{
-    max-height:500px;
-    opacity:1;
-    margin-top:14px;
-    padding-top:14px;
-  }
-  .pkg-detail b{color:var(--navy);}
-  .pkg-cta{
-    display:block;
-    text-align:center;
-    margin-top:22px;
-    background:var(--navy);
-    color:#fff;
-    padding:13px;
-    border-radius:9px;
-    font-weight:700;
-    font-size:14.5px;
-    transition:background .2s;
-  }
-  .pkg-card.featured .pkg-cta{background:var(--teal);color:var(--navy);}
-  .pkg-cta:hover{opacity:0.9;}
-  .note{
-    text-align:center;
-    color:var(--muted);
-    font-size:13px;
-    margin-top:28px;
-  }
-
-  /* ---------- AFTER PAYMENT ---------- */
-  .intake{
-    background:var(--card);
-    border-radius:20px;
-    padding:48px;
-    box-shadow:var(--shadow);
-    text-align:center;
-    max-width:720px;
-    margin:0 auto;
-  }
-  .intake p{color:var(--muted);font-size:15px;margin-top:10px;}
-  .intake .warn{
-    margin-top:18px;
-    font-size:13.5px;
-    color:#9A6A2E;
-    background:#FFF6EA;
-    border:1px solid #F1DDBB;
-    padding:10px 16px;
-    border-radius:8px;
-    display:inline-block;
-  }
-
-  /* ---------- FOOTER ---------- */
-  footer{
-    background:var(--navy);
-    color:#9FB0C5;
-    padding:36px 0;
-    text-align:center;
-    font-size:13.5px;
-  }
-  footer .logo{font-size:18px;margin-bottom:8px;}
-
-  @media(max-width:860px){
-    .steps, .packages, .includes-grid, .trust-grid, .about-grid{grid-template-columns:1fr;}
-    .hero h1{font-size:34px;}
-    .about, .includes{padding:34px 24px;}
+  .logo-tab::after{content:""; position:absolute; right:-5px; top:5px; width:5px; height:10px; background:var(--accent-warm); border-radius:2px;}
+  nav ul{list-style:none; display:flex; gap:32px; margin:0; padding:0;}
+  nav a{font-size:14.5px; font-weight:500; color:var(--ink-soft);}
+  nav a:hover{color:var(--ink);}
+  .nav-cta{display:flex; align-items:center; gap:14px;}
+  .nav-links, .nav-cta .btn-outline{display:flex;}
+  .burger{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;}
+  .burger span{width:22px; height:2px; background:var(--ink);}
+  @media (max-width:860px){
     .nav-links{display:none;}
+    .nav-cta .btn-outline{display:none;}
+    .burger{display:flex;}
   }
+
+  /* HERO */
+  .hero{padding:88px 0 60px;}
+  .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:64px; align-items:center;}
+  @media (max-width:960px){ .hero-grid{grid-template-columns:1fr;} }
+  .hero h1{font-size:clamp(34px,4.6vw,54px); line-height:1.06;}
+  .hero .lede{font-size:17.5px; max-width:520px;}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; margin:28px 0 22px;}
+  .hero-note{font-size:13px; color:var(--ink-faint);}
+  .trust-strip{
+    display:flex; flex-wrap:wrap; gap:10px; margin-top:28px;
+  }
+  .trust-chip{
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.02em;
+    padding:7px 12px; border:1px solid var(--line); border-radius:999px; color:var(--ink-soft);
+    background:var(--white);
+  }
+
+  /* Dossier document visual */
+  .dossier{
+    position:relative; background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    box-shadow:var(--shadow-lift); padding:30px 30px 26px; transform:rotate(1.2deg);
+  }
+  .dossier::before{
+    content:""; position:absolute; left:-1px; top:26px; bottom:26px; width:8px;
+    background:var(--accent); border-radius:0 6px 6px 0;
+  }
+  .dossier-tag{
+    position:absolute; top:-12px; right:24px; background:var(--accent-warm); color:var(--white);
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    padding:6px 12px; border-radius:6px; transform:rotate(-3deg); box-shadow:0 6px 14px rgba(0,0,0,.18);
+  }
+  .dossier h4{font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint); font-family:'IBM Plex Mono',monospace; margin-bottom:16px;}
+  .dossier ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px;}
+  .dossier li{display:flex; align-items:baseline; gap:10px; font-size:14.5px; color:var(--ink); border-bottom:1px dashed var(--line); padding-bottom:12px;}
+  .dossier li:last-child{border-bottom:none; padding-bottom:0;}
+  .dossier li .n{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--accent);}
+
+  /* Includes */
+  .includes-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+  @media (max-width:640px){ .includes-grid{grid-template-columns:1fr;} }
+  .include-item{
+    display:flex; gap:12px; align-items:flex-start; padding:16px 18px; background:var(--white);
+    border:1px solid var(--line); border-radius:10px;
+  }
+  .include-item .dot{width:8px; height:8px; border-radius:50%; background:var(--accent); margin-top:7px; flex:none;}
+
+  /* Problem */
+  .problem{background:var(--bg-alt);}
+  .problem-inner{max-width:720px; margin:0 auto; text-align:center;}
+
+  /* How it works */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media (max-width:860px){ .steps{grid-template-columns:1fr;} }
+  .step-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:26px;
+    cursor:pointer; transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .step-card:hover, .step-card.active{border-color:var(--accent); box-shadow:var(--shadow-lift);}
+  .step-num{font-family:'IBM Plex Mono',monospace; color:var(--accent); font-size:13px; margin-bottom:10px;}
+  .step-detail{
+    max-height:0; overflow:hidden; opacity:0; transition:max-height .3s ease, opacity .2s ease, margin-top .3s ease;
+    font-size:14px; color:var(--ink-soft); border-top:1px dashed var(--line);
+  }
+  .step-card:hover .step-detail, .step-card.active .step-detail{max-height:220px; opacity:1; margin-top:14px; padding-top:14px;}
+  .hint{font-size:12.5px; color:var(--ink-faint); margin-top:6px;}
+
+  /* Sample brief preview */
+  .sample-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;}
+  @media (max-width:900px){ .sample-grid{grid-template-columns:1fr;} }
+  .preview-tabs{display:flex; gap:10px; margin-bottom:18px;}
+  .preview-tab{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; padding:8px 14px; border-radius:8px;
+    border:1px solid var(--line); background:var(--white); cursor:pointer; color:var(--ink-soft);
+  }
+  .preview-tab.active{background:var(--ink); color:var(--white); border-color:var(--ink);}
+  .brief-preview{
+    position:relative; background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; box-shadow:var(--shadow-lift);
+  }
+  .brief-preview .glow{
+    position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(circle 220px at var(--x,50%) var(--y,50%), rgba(31,111,92,.16), transparent 70%);
+    transition:opacity .2s ease; opacity:0;
+  }
+  .brief-preview:hover .glow{opacity:1;}
+  .brief-preview video, .brief-preview .doc-art{width:100%; display:block;}
+  .brief-preview.hidden{display:none;}
+  .doc-lines{padding:34px;}
+  .doc-line-row{
+    display:flex; gap:14px; padding:12px 0; border-bottom:1px dashed var(--line);
+    transition:transform .18s ease, border-color .18s ease, background .18s ease;
+    border-radius:8px;
+  }
+  .doc-line-row:hover{transform:translateX(6px); border-color:var(--accent); background:var(--bg);}
+  .doc-line-row .n{font-family:'IBM Plex Mono',monospace; color:var(--accent); font-size:12px; flex:none; padding-top:2px;}
+  .doc-line-row strong{display:block; font-size:14.5px; margin-bottom:2px;}
+  .doc-line-row span{font-size:13px; color:var(--ink-faint);}
+  .sample-ctas{display:flex; gap:12px; margin-top:24px; flex-wrap:wrap;}
+
+  /* After checkout */
+  .after-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:16px;}
+  @media (max-width:960px){ .after-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .after-grid{grid-template-columns:1fr;} }
+  .after-card{background:var(--white); border:1px solid var(--line); border-radius:12px; padding:20px;}
+  .after-card .step-num{margin-bottom:8px;}
+  .after-card h4{font-size:15.5px; margin-bottom:6px;}
+  .after-card p{font-size:13.5px; margin:0;}
+
+  /* Use cases */
+  .usecase-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media (max-width:860px){ .usecase-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .usecase-grid{grid-template-columns:1fr;} }
+  .usecase-card{background:var(--bg-alt); border:1px solid var(--line); border-radius:12px; padding:22px;}
+  .usecase-card h4{font-size:16px; margin-bottom:6px;}
+  .usecase-card p{font-size:13.5px; margin:0;}
+
+  /* Founder */
+  .founder{display:grid; grid-template-columns:.9fr 1.4fr; gap:48px; align-items:center;}
+  @media (max-width:820px){ .founder{grid-template-columns:1fr;} }
+  .founder-photo{
+    aspect-ratio:1/1; border-radius:var(--radius); background:linear-gradient(150deg,var(--accent),var(--panel-dark));
+    display:flex; align-items:center; justify-content:center; color:var(--white);
+    font-family:'Fraunces',serif; font-size:52px;
+  }
+  blockquote{
+    font-family:'Fraunces',serif; font-size:20px; font-style:italic; color:var(--ink);
+    border-left:3px solid var(--accent); padding-left:20px; margin:18px 0;
+  }
+  .founder-links{display:flex; gap:16px; margin-top:8px;}
+  .founder-links a{font-size:13.5px; color:var(--accent); font-weight:600;}
+
+  /* Demo video */
+  .demo{background:var(--panel-dark); color:var(--white);}
+  .demo .eyebrow{color:var(--accent-warm);}
+  .demo h2, .demo p{color:var(--white);}
+  .demo p{color:#C9CFCB;}
+  .demo-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;}
+  @media (max-width:900px){ .demo-grid{grid-template-columns:1fr;} }
+  .demo-video{
+    border-radius:var(--radius); overflow:hidden; border:1px solid var(--line-dark); position:relative;
+  }
+  .demo-video video{width:100%; display:block;}
+  .demo-checklist{list-style:none; margin:20px 0 0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .demo-checklist li{display:flex; gap:10px; font-size:14px; color:#D7DBD8;}
+  .demo-checklist li::before{content:"✓"; color:var(--accent-warm); font-weight:700;}
+
+  /* Trust & Security */
+  .trust{background:var(--panel-dark-2); color:var(--white);}
+  .trust .eyebrow{color:var(--accent-warm);}
+  .trust h2{color:var(--white);}
+  .trust > .wrap > p{color:#C9CFCB; max-width:600px; margin:0 auto 12px;}
+  .trust-badges{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:48px;}
+  .trust-badges .trust-chip{background:transparent; border-color:var(--line-dark); color:#C9CFCB;}
+  .trust-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
+  @media (max-width:920px){ .trust-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .trust-grid{grid-template-columns:1fr;} }
+  .trust-card{
+    background:rgba(255,255,255,.04); border:1px solid var(--line-dark); border-radius:12px; padding:22px;
+  }
+  .trust-card .ic{font-size:22px; margin-bottom:10px;}
+  .trust-card h4{color:var(--white); font-size:15.5px; margin-bottom:6px;}
+  .trust-card p{color:#B7BDB9; font-size:13.5px; margin:0;}
+
+  /* Packages */
+  .pkg-sub{max-width:560px;}
+  .plans{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; align-items:start;}
+  @media (max-width:920px){ .plans{grid-template-columns:1fr;} }
+  .plan-card{
+    position:relative; background:var(--white); border:2px solid var(--line); border-radius:var(--radius);
+    padding:30px 26px; cursor:pointer; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .plan-card:hover{transform:translateY(-3px);}
+  .plan-card.selected{border-color:var(--accent); box-shadow:0 18px 40px rgba(20,24,26,.14); transform:translateY(-4px) scale(1.02);}
+  .plan-stamp{
+    position:absolute; top:-14px; right:22px; background:var(--accent-warm); color:var(--white);
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    padding:6px 12px; border-radius:6px; transform:rotate(3deg); box-shadow:0 6px 14px rgba(0,0,0,.18);
+  }
+  .plan-name{font-size:19px; margin-bottom:4px;}
+  .plan-price{font-family:'Fraunces',serif; font-size:38px; font-weight:600; margin:6px 0 10px;}
+  .plan-price span{font-family:'Inter',sans-serif; font-size:14px; color:var(--ink-faint); font-weight:500;}
+  .plan-desc{font-size:13.5px; margin-bottom:16px;}
+  .plan-list{list-style:none; margin:0 0 8px; padding:0; display:flex; flex-direction:column; gap:9px;}
+  .plan-list li{font-size:13.5px; color:var(--ink); display:flex; gap:8px;}
+  .plan-list li::before{content:"—"; color:var(--accent); flex:none;}
+  .best-if{
+    max-height:0; overflow:hidden; opacity:0; transition:max-height .28s ease, opacity .22s ease, margin .22s ease;
+  }
+  .plan-card.selected .best-if{max-height:220px; opacity:1; margin:14px 0;}
+  .best-if-inner{
+    background:var(--bg-alt); border-radius:10px; padding:14px 16px; font-size:13px; color:var(--ink-soft);
+  }
+  .best-if-inner strong{color:var(--ink);}
+  .plan-pay{display:flex; flex-direction:column; gap:8px; margin-top:18px;}
+  .select-hint{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.04em; color:var(--ink-faint);
+    text-align:center; margin-top:6px;
+  }
+  .plan-card.selected .select-hint{color:var(--accent); font-weight:600;}
+
+  /* FAQ */
+  .faq-list{max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:10px;}
+  .faq-item{background:var(--white); border:1px solid var(--line); border-radius:12px; overflow:hidden;}
+  .faq-q{
+    display:flex; justify-content:space-between; align-items:center; gap:16px;
+    padding:18px 22px; cursor:pointer; font-weight:600; font-size:15px;
+  }
+  .faq-q .plus{font-family:'IBM Plex Mono',monospace; color:var(--accent); flex:none; transition:transform .2s ease;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .28s ease; padding:0 22px;}
+  .faq-item.open .faq-a{max-height:260px; padding-bottom:18px;}
+  .faq-a p{font-size:14px; margin:0;}
+
+  /* Privacy strip */
+  .privacy{background:var(--bg-alt);}
+  .privacy-grid{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+  @media (max-width:820px){ .privacy-grid{grid-template-columns:1fr;} }
+  .privacy-box{background:var(--white); border:1px solid var(--line); border-radius:12px; padding:24px;}
+  .privacy-box h4{font-size:15.5px; margin-bottom:10px;}
+  .privacy-box p{font-size:13.5px; margin:0;}
+
+  /* Footer */
+  footer{background:var(--panel-dark); color:#B7BDB9; padding:60px 0 30px;}
+  .footer-top{display:flex; justify-content:space-between; gap:40px; flex-wrap:wrap; padding-bottom:32px; border-bottom:1px solid var(--line-dark);}
+  .footer-brand{max-width:340px;}
+  .footer-brand .logo{color:var(--white);}
+  .footer-brand p{color:#9AA19B; font-size:13.5px;}
+  .footer-links{display:flex; gap:56px; flex-wrap:wrap;}
+  .footer-col h5{color:var(--white); font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; font-family:'IBM Plex Mono',monospace; margin-bottom:14px;}
+  .footer-col a{display:block; font-size:13.5px; color:#B7BDB9; margin-bottom:10px;}
+  .footer-col a:hover{color:var(--white);}
+  .footer-bottom{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; padding-top:24px; font-size:12.5px; color:#7B827D;}
+  .footer-pay-badges{display:flex; gap:8px;}
+  .footer-pay-badges span{border:1px solid var(--line-dark); border-radius:6px; padding:4px 9px; font-family:'IBM Plex Mono',monospace; font-size:11px;}
+
+  ::selection{background:var(--accent); color:var(--white);}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
 </style>
 </head>
 <body>
 
 <header>
-  <nav class="wrap">
-    <div class="logo"><b>A</b>nswer<b>I</b>nsight</div>
-    <div class="nav-links">
-      <a href="#how">How it works</a>
-      <a href="#packages">Packages</a>
-      <a href="#about">About</a>
-      <a href="#packages" class="nav-cta">View packages</a>
+  <div class="wrap navbar">
+    <a href="#top" class="logo"><span class="logo-tab"></span>AnswerInsight</a>
+    <nav class="nav-links"><ul>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#sample">Sample brief</a></li>
+      <li><a href="#trust">Security</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul></nav>
+    <div class="nav-cta">
+      <a href="#fitcheck" class="btn btn-outline btn-sm">Free Fit Check</a>
+      <a href="#packages" class="btn btn-primary btn-sm">Get Started</a>
     </div>
-  </nav>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
 </header>
 
-<section class="hero">
-  <div class="wrap hero-inner">
-    <div class="eyebrow">Interview prep for serious career moves</div>
-    <h1>Turn your resume and job posting into a role-specific interview brief.</h1>
-    <p class="sub">AnswerInsight helps telecom, federal, finance, audit, compliance, operations, product, and leadership candidates walk in with a clear story, strong examples, and focused prep — built for the exact role you're interviewing for.</p>
-    <div class="hero-ctas">
-      <a href="#packages" class="btn btn-primary">View packages</a>
-      <a href="#how" class="btn btn-ghost">See how it works</a>
-    </div>
-  </div>
-</section>
+<main id="top">
 
-<div class="trust-strip">
-  <div class="wrap trust-grid">
-    <div class="trust-item">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FBF95" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-      Secure checkout
-    </div>
-    <div class="trust-item">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FBF95" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
-      Confidential by design
-    </div>
-    <div class="trust-item">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FBF95" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.5" fill="#2FBF95"/></svg>
-      Role-specific, not generic
-    </div>
-    <div class="trust-item">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FBF95" stroke-width="2"><path d="M5 12l5 5L19 7"/></svg>
-      One-time payment, no subscription
-    </div>
-  </div>
-</div>
-
-<section class="mission wrap">
-  <h2>Generic interview prep is not enough.</h2>
-  <p>Many experienced professionals know their work but struggle to explain it clearly under interview pressure. AnswerInsight connects your real experience to the role you're applying for — before you walk into the room.</p>
-</section>
-
-<section id="how" class="wrap">
-  <div class="section-head">
-    <div class="eyebrow">The process</div>
-    <h2>How it works</h2>
-    <p>Three steps from your materials to a focused, role-specific brief.</p>
-  </div>
-  <p class="hint">Hover over a step (or tap, on mobile) for more detail.</p>
-  <div class="steps">
-
-    <div class="step-card">
-      <div class="step-num">1</div>
-      <h3>Send your materials</h3>
-      <p class="base">Resume, job posting, target company, and interview notes.</p>
-      <div class="step-detail">
-        We start with what you already have — no lengthy new forms to fill out. Share your resume, the job posting, the company you're interviewing with, and any notes from earlier rounds. The more context you give us, the sharper and more specific your brief will be.
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Role-specific interview prep</div>
+        <h1>Walk into your interview knowing exactly what to say.</h1>
+        <p class="lede">AnswerInsight turns your resume and the job posting into a focused interview brief — likely questions, STAR stories, and role-specific talking points — built for telecom, federal, finance, audit, compliance, operations, product, and leadership candidates.</p>
+        <div class="hero-ctas">
+          <a href="#fitcheck" class="btn btn-primary">Start Free Fit Check</a>
+          <a href="#sample" class="btn btn-outline">View Sample Brief</a>
+        </div>
+        <p class="hero-note">No fake confidence. No outcome guarantees. Just structured preparation.</p>
+        <div class="trust-strip">
+          <span class="trust-chip">Secure checkout — Stripe &amp; PayPal</span>
+          <span class="trust-chip">Confidential by design</span>
+          <span class="trust-chip">One-time payment, no subscription</span>
+          <span class="trust-chip">Delivered within 24 hours</span>
+        </div>
+      </div>
+      <div>
+        <div class="dossier">
+          <div class="dossier-tag">Deliverable preview</div>
+          <h4>Interview Brief — Contents</h4>
+          <ul>
+            <li><span class="n">01</span> Executive Summary</li>
+            <li><span class="n">02</span> Opening Pitch</li>
+            <li><span class="n">03</span> Resume-to-Role Alignment</li>
+            <li><span class="n">04</span> Likely Interview Questions</li>
+            <li><span class="n">05</span> STAR Story Bank</li>
+            <li><span class="n">06</span> Strengths to Emphasize</li>
+            <li><span class="n">07</span> Gaps to Prepare For</li>
+            <li><span class="n">08</span> Final Prep Checklist</li>
+          </ul>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="step-card">
-      <div class="step-num">2</div>
-      <h3>Get your brief</h3>
-      <p class="base">Opening pitch, likely questions, STAR stories, technical prep, and weak spots.</p>
-      <div class="step-detail">
-        You'll receive a ready-to-use opening pitch in your own voice, the questions most likely to come up for this specific role, a bank of STAR stories built from your real experience, technical and role-specific talking points, and an honest look at the weak spots worth tightening before you walk in.
+  <!-- INCLUDES -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">What's included</div>
+        <h2>Your interview brief includes</h2>
+      </div>
+      <div class="includes-grid">
+        <div class="include-item"><span class="dot"></span><div>Resume-to-role match analysis</div></div>
+        <div class="include-item"><span class="dot"></span><div>Likely interview questions</div></div>
+        <div class="include-item"><span class="dot"></span><div>STAR story recommendations</div></div>
+        <div class="include-item"><span class="dot"></span><div>Strengths to highlight</div></div>
+        <div class="include-item"><span class="dot"></span><div>Gaps to prepare for</div></div>
+        <div class="include-item"><span class="dot"></span><div>Role-specific talking points</div></div>
+        <div class="include-item"><span class="dot"></span><div>Final interview checklist</div></div>
+        <div class="include-item"><span class="dot"></span><div>Optional thank-you note after the interview</div></div>
       </div>
     </div>
+  </section>
 
-    <div class="step-card">
-      <div class="step-num">3</div>
-      <h3>Prep with focus</h3>
-      <p class="base">Use the 24-hour prep sheet before the interview.</p>
-      <div class="step-detail">
-        In the final day before your interview, use the condensed prep sheet — a one-page summary of your pitch, your top stories, and the questions to expect — so you walk in confident instead of re-reading a ten-page document the morning of.
+  <!-- PROBLEM -->
+  <section class="problem">
+    <div class="wrap problem-inner">
+      <div class="eyebrow">Why this exists</div>
+      <h2>Generic interview prep is not enough.</h2>
+      <p>Many experienced professionals know their work but struggle to explain it clearly under interview pressure. AnswerInsight connects your real experience to the role you're applying for — before you walk into the room — so prep feels practical instead of vague.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head center">
+        <div class="eyebrow">The process</div>
+        <h2>From payment to prepared, with fewer loose ends.</h2>
+        <p class="hint">Hover a step (or tap, on mobile) for more detail.</p>
+      </div>
+      <div class="steps">
+        <div class="step-card" tabindex="0">
+          <div class="step-num">01</div>
+          <h4>Send your materials</h4>
+          <p style="margin:0; font-size:14px;">Resume, job posting, target company, and interview notes.</p>
+          <div class="step-detail">We start with what you already have — no lengthy new forms. Share your resume, the job posting, the company you're interviewing with, and any notes from earlier rounds. More context makes for a sharper brief.</div>
+        </div>
+        <div class="step-card" tabindex="0">
+          <div class="step-num">02</div>
+          <h4>Get your brief</h4>
+          <p style="margin:0; font-size:14px;">Opening pitch, likely questions, STAR stories, and weak spots.</p>
+          <div class="step-detail">You'll receive a ready-to-use opening pitch in your own voice, the questions most likely to come up for this role, a STAR story bank built from your real experience, and an honest look at the areas worth tightening.</div>
+        </div>
+        <div class="step-card" tabindex="0">
+          <div class="step-num">03</div>
+          <h4>Prep with focus</h4>
+          <p style="margin:0; font-size:14px;">Use the 24-hour prep sheet before the interview.</p>
+          <div class="step-detail">In the final day before your interview, use the condensed prep sheet — a one-page summary of your pitch, your top stories, and the questions to expect — so you walk in confident, not re-reading a ten-page document.</div>
+        </div>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
-
-<section class="wrap">
-  <div class="includes">
-    <div class="eyebrow">Every package starts here</div>
-    <h2 style="margin-top:10px;font-size:28px;">What your prep package includes</h2>
-    <div class="includes-grid">
-      <div class="includes-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FBF95" stroke-width="2"><path d="M5 12l5 5L19 7"/></svg> Opening pitch in your voice</div>
-      <div class="includes-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FBF95" stroke-width="2"><path d="M5 12l5 5L19 7"/></svg> Resume-to-role alignment</div>
-      <div class="includes-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FBF95" stroke-width="2"><path d="M5 12l5 5L19 7"/></svg> Likely interview questions</div>
-      <div class="includes-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FBF95" stroke-width="2"><path d="M5 12l5 5L19 7"/></svg> STAR story bank</div>
-      <div class="includes-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FBF95" stroke-width="2"><path d="M5 12l5 5L19 7"/></svg> Technical and role-specific prep</div>
-      <div class="includes-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FBF95" stroke-width="2"><path d="M5 12l5 5L19 7"/></svg> Risk areas and weak spots to tighten</div>
-      <div class="includes-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FBF95" stroke-width="2"><path d="M5 12l5 5L19 7"/></svg> Final 24-hour interview prep sheet</div>
-      <div class="includes-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FBF95" stroke-width="2"><path d="M5 12l5 5L19 7"/></svg> Optional thank-you note after the interview</div>
+  <!-- FREE FIT CHECK -->
+  <section class="problem" id="fitcheck">
+    <div class="wrap problem-inner">
+      <div class="eyebrow">Free — no purchase required</div>
+      <h2>Start with a free Interview Fit Check.</h2>
+      <p>See how your background maps to the target role, where you look strongest, and which gaps deserve focused prep before you buy.</p>
+      <a href="#packages" class="btn btn-accent">Start Free Interview Fit Check</a>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="about" class="wrap">
-  <div class="about">
-    <div class="eyebrow" style="color:#2FBF95;">Why professionals trust us</div>
-    <h2>Built for roles where interviews are detailed, technical, and unforgiving of vague answers.</h2>
-    <p>AnswerInsight is built around one idea: your experience deserves to be understood, not guessed at from a generic template. Every brief is built specifically for your resume, the job posting, and the company you're interviewing with — not pulled from a stock question bank.</p>
-    <p>Payment is processed securely through Stripe, the same infrastructure used by major online retailers. We never see or store your full card details, and your materials are used only to build your prep brief.</p>
-    <div class="about-grid">
-      <div class="about-card">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2FBF95" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-        <h4>Secure payment</h4>
-        <p>Checkout runs through Stripe's encrypted, PCI-compliant system.</p>
+  <!-- SAMPLE BRIEF -->
+  <section id="sample">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Preview your interview brief</div>
+        <h2>Structured preparation you can actually use.</h2>
+        <p>Watch a short preview of a real brief layout, or explore the fictional sample below. Sample content is generic — it shows format, not a private employer example.</p>
       </div>
-      <div class="about-card">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2FBF95" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
-        <h4>Confidential handling</h4>
-        <p>Your resume and notes are used only to build your brief.</p>
-      </div>
-      <div class="about-card">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2FBF95" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-        <h4>Role-specific research</h4>
-        <p>Every brief is built from your actual resume and job posting.</p>
-      </div>
-      <div class="about-card">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2FBF95" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-6"/></svg>
-        <h4>Pay for what you need</h4>
-        <p>Three package levels, priced by how much support you want — no subscription.</p>
+
+      <div class="sample-grid">
+        <div>
+          <div class="preview-tabs">
+            <button class="preview-tab active" data-target="preview-image">Preview image</button>
+            <button class="preview-tab" data-target="preview-video">Watch 10-sec preview</button>
+          </div>
+
+          <div class="brief-preview" id="preview-image">
+            <div class="glow"></div>
+            <div class="doc-lines doc-art">
+              <div class="doc-line-row"><span class="n">01</span><div><strong>Executive Summary</strong><span>How to position your background for this role.</span></div></div>
+              <div class="doc-line-row"><span class="n">02</span><div><strong>Opening Pitch</strong><span>A concise way to introduce your background.</span></div></div>
+              <div class="doc-line-row"><span class="n">03</span><div><strong>Resume-to-Role Alignment</strong><span>Requirements mapped to your proof points.</span></div></div>
+              <div class="doc-line-row"><span class="n">04</span><div><strong>Likely Interview Questions</strong><span>Focused on this role's level and function.</span></div></div>
+              <div class="doc-line-row"><span class="n">05</span><div><strong>STAR Story Example</strong><span>One experience, structured into a clear answer.</span></div></div>
+              <div class="doc-line-row"><span class="n">06</span><div><strong>Final Prep Checklist</strong><span>What to review the night before and day of.</span></div></div>
+            </div>
+          </div>
+
+          <div class="brief-preview hidden" id="preview-video">
+            <div class="glow"></div>
+            <!-- Placeholder demo clip — swap for a native 5–10s muted loop of a cursor scrolling a real brief -->
+            <video autoplay muted loop playsinline poster="">
+              <source src="https://labs.google/fx/api/og-video/shared/8e2c5835-8fe7-4dcf-8262-824ceef89938" type="video/mp4">
+            </video>
+          </div>
+
+          <div class="sample-ctas">
+            <a href="/sample-brief" class="btn btn-outline btn-sm">Open full sample brief</a>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="font-size:20px;">What's inside every section</h3>
+          <p style="font-size:14px;">Each section is built to answer one question a hiring panel is actually going to ask — not to fill space. Hover any line in the preview to see how each section connects to the interview itself.</p>
+          <ul style="list-style:none; padding:0; margin:18px 0 0; display:flex; flex-direction:column; gap:10px;">
+            <li style="font-size:13.5px; color:var(--ink-soft);"><strong style="color:var(--ink);">Executive Summary</strong> — a clear read on how to position your background.</li>
+            <li style="font-size:13.5px; color:var(--ink-soft);"><strong style="color:var(--ink);">STAR Story Bank</strong> — realistic structures for turning experience into clear answers.</li>
+            <li style="font-size:13.5px; color:var(--ink-soft);"><strong style="color:var(--ink);">Gaps to Prepare For</strong> — honest prep areas with language for addressing them constructively.</li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="packages" class="wrap">
-  <div class="section-head">
-    <div class="eyebrow">Packages</div>
-    <h2>Choose your prep level</h2>
-    <p>All packages are one-time payments. Pick the level of support that matches how much is riding on this interview.</p>
-  </div>
-  <p class="hint">Hover over a package (or tap, on mobile) to see exactly what you're paying for.</p>
-
-  <div class="packages">
-
-    <div class="pkg-card">
-      <h3>Quick Prep</h3>
-      <div class="price">$49</div>
-      <p class="pkg-desc">A focused role-specific prep snapshot for one upcoming interview.</p>
-      <ul class="pkg-list">
-        <li>Resume + job posting review</li>
-        <li>Opening pitch</li>
-        <li>10 likely questions</li>
-        <li>Final prep notes</li>
-      </ul>
-      <div class="pkg-detail">
-        <b>Best if:</b> your interview is in the next day or two and you need the essentials fast. You get a tailored opening pitch and the ten questions most likely to come up for this exact role — enough to walk in prepared, without paying for extras you won't use.
+  <!-- AFTER CHECKOUT -->
+  <section class="problem">
+    <div class="wrap">
+      <div class="section-head center">
+        <div class="eyebrow">After checkout</div>
+        <h2>What happens after you pay?</h2>
+        <p>A simple handoff keeps the process clear from payment to delivery.</p>
       </div>
-      <a href="#" class="pkg-cta">Start Quick Prep</a>
-    </div>
-
-    <div class="pkg-card featured">
-      <span class="badge">Most Popular</span>
-      <h3>Full Interview Brief</h3>
-      <div class="price">$149</div>
-      <p class="pkg-desc">The main offer and best-value package for serious interviews.</p>
-      <ul class="pkg-list">
-        <li>Full role-readiness brief</li>
-        <li>STAR story bank</li>
-        <li>Technical prep</li>
-        <li>Risk areas</li>
-        <li>24-hour prep sheet</li>
-      </ul>
-      <div class="pkg-detail">
-        <b>Best if:</b> this interview matters and you want a complete story, not just talking points. You get a full STAR story bank built from your real experience, technical and role-specific prep, an honest read on your risk areas, and the 24-hour prep sheet to review right before you go in.
+      <div class="after-grid">
+        <div class="after-card"><div class="step-num">01</div><h4>Secure checkout</h4><p>Choose a package and complete payment through Stripe or PayPal.</p></div>
+        <div class="after-card"><div class="step-num">02</div><h4>Intake link</h4><p>You receive the intake path for your resume, job posting, and role notes.</p></div>
+        <div class="after-card"><div class="step-num">03</div><h4>Upload materials</h4><p>Share only documents and public role details you have permission to use.</p></div>
+        <div class="after-card"><div class="step-num">04</div><h4>Brief prepared</h4><p>Your materials are turned into a practical interview-prep brief.</p></div>
+        <div class="after-card"><div class="step-num">05</div><h4>Delivery</h4><p>Standard delivery is within 24 hours after usable materials are received.</p></div>
       </div>
-      <a href="#" class="pkg-cta">Get Full Interview Brief</a>
     </div>
+  </section>
 
-    <div class="pkg-card">
-      <h3>Premium Prep</h3>
-      <div class="price">$299</div>
-      <p class="pkg-desc">A deeper prep package for higher-stakes interviews or candidates who want extra support.</p>
-      <ul class="pkg-list">
-        <li>Full Interview Brief</li>
-        <li>Mock interview script</li>
-        <li>Answer refinement</li>
-        <li>Follow-up email draft</li>
-      </ul>
-      <div class="pkg-detail">
-        <b>Best if:</b> it's a final-round, executive, or otherwise high-stakes interview and you want extra reps before the real thing. Includes everything in the Full Interview Brief, plus a mock interview script to rehearse out loud, refinement on your toughest answers, and a follow-up email drafted for you after the interview.
+  <!-- USE CASES -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Use cases</div>
+        <h2>Built for real interview moments.</h2>
       </div>
-      <a href="#" class="pkg-cta">Book Premium Prep</a>
+      <div class="usecase-grid">
+        <div class="usecase-card"><h4>Last-minute prep</h4><p>You have an interview soon and need focused talking points quickly.</p></div>
+        <div class="usecase-card"><h4>Career changer</h4><p>Translate adjacent experience into the language of a new role.</p></div>
+        <div class="usecase-card"><h4>Leadership interview</h4><p>Clear stories about judgment, ownership, and stakeholder communication.</p></div>
+        <div class="usecase-card"><h4>Technical/business role</h4><p>Explain both the work and its business impact.</p></div>
+        <div class="usecase-card"><h4>Government/compliance role</h4><p>Precise, careful language for regulated or process-heavy work.</p></div>
+        <div class="usecase-card"><h4>Internal promotion</h4><p>Position proven work as readiness for a higher-scope role.</p></div>
+      </div>
     </div>
+  </section>
 
-  </div>
-  <p class="note">Checkout links above are placeholders — swap in your own Stripe checkout links before launch.</p>
-</section>
+  <!-- FOUNDER -->
+  <section class="problem">
+    <div class="wrap founder">
+      <div class="founder-photo">TN</div>
+      <div>
+        <div class="eyebrow">Founder-led product</div>
+        <h2>Meet the founder</h2>
+        <p>AnswerInsight was created by Tomas Nieves to help candidates turn resumes and job postings into focused interview preparation without spending hours organizing notes, likely questions, STAR stories, and role-specific talking points.</p>
+        <blockquote>"Interviews shouldn't be about guessing what to say. They should be about confidently communicating the value you already bring."</blockquote>
+        <div class="founder-links">
+          <a href="#">LinkedIn</a>
+          <a href="https://nieves-labs.com">Nieves Labs</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section id="intake" class="wrap">
-  <div class="intake">
-    <div class="eyebrow">After payment</div>
-    <h2 style="margin-top:10px;font-size:24px;">What happens after checkout</h2>
-    <p>After checkout, you receive a private intake link by email so your prep workflow can start automatically.</p>
-    <div class="warn">Do not upload confidential employer documents unless you have permission to use them.</div>
-  </div>
-</section>
+  <!-- DEMO VIDEO -->
+  <section class="demo">
+    <div class="wrap demo-grid">
+      <div>
+        <div class="eyebrow">Product walkthrough</div>
+        <h2>See AnswerInsight in action.</h2>
+        <p>See how AnswerInsight transforms your resume and target job posting into a personalized interview strategy — helping you walk in with confidence.</p>
+        <ul class="demo-checklist">
+          <li>Delivered within 24 hours</li>
+          <li>Personalized for your target role</li>
+          <li>Secure checkout — Stripe &amp; PayPal</li>
+          <li>No subscription required</li>
+        </ul>
+      </div>
+      <div class="demo-video">
+        <!-- Placeholder demo clip — swap for native product walkthrough footage -->
+        <video controls muted loop playsinline>
+          <source src="https://labs.google/fx/api/og-video/shared/8e2c5835-8fe7-4dcf-8262-824ceef89938" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST & SECURITY -->
+  <section class="trust" id="trust">
+    <div class="wrap" style="text-align:center;">
+      <div class="eyebrow" style="justify-content:center;">Trust &amp; security</div>
+      <h2>Built to protect your data — and your card details.</h2>
+      <p>Every brief is prepared through a secure, privacy-conscious workflow, from checkout to delivery.</p>
+      <div class="trust-badges">
+        <span class="trust-chip">Stripe secure checkout</span>
+        <span class="trust-chip">PayPal buyer protection</span>
+        <span class="trust-chip">No card data stored</span>
+        <span class="trust-chip">No subscription</span>
+      </div>
+      <div class="trust-grid" style="text-align:left;">
+        <div class="trust-card"><div class="ic">🔒</div><h4>Secure payment</h4><p>Checkout runs through Stripe and PayPal's encrypted, PCI-compliant systems. We never see or store your full card details.</p></div>
+        <div class="trust-card"><div class="ic">🗂️</div><h4>Confidential handling</h4><p>Your resume, job posting, and notes are used only to build your interview brief — never sold or shared.</p></div>
+        <div class="trust-card"><div class="ic">🎯</div><h4>Role-specific, not generic</h4><p>Every brief is built from your actual resume and the job posting you send us, not a stock question bank.</p></div>
+        <div class="trust-card"><div class="ic">💳</div><h4>Pay for what you need</h4><p>One-time payment, three package levels, no subscription, no auto-renewal.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section id="packages">
+    <div class="wrap">
+      <div class="section-head center">
+        <div class="eyebrow">Packages</div>
+        <h2>Choose the prep depth that matches the stakes.</h2>
+        <p class="pkg-sub" style="margin:0 auto;">Standard delivery: within 24 hours. Rush delivery may be available when capacity allows. Secure checkout powered by Stripe and PayPal.</p>
+        <p class="hint">Tap a package to see who it's best for.</p>
+      </div>
+
+      <div class="plans">
+
+        <div class="plan-card" data-plan="essentials" tabindex="0">
+          <div class="plan-name">Interview Essentials</div>
+          <div class="plan-price">$49</div>
+          <p class="plan-desc">A focused, role-specific prep snapshot for one upcoming interview.</p>
+          <ul class="plan-list">
+            <li>Resume + job posting review</li>
+            <li>Opening pitch in your voice</li>
+            <li>10 likely interview questions</li>
+            <li>Final 24-hour prep notes</li>
+          </ul>
+          <div class="best-if"><div class="best-if-inner"><strong>Best if:</strong> your interview is in the next day or two and you need the essentials fast — a tailored opening pitch and the ten questions most likely to come up, without paying for extras you won't use.</div></div>
+          <div class="plan-pay">
+            <a href="https://buy.stripe.com/eVq5kCfvh4LD5lbesH9fW07" class="btn btn-primary btn-block btn-sm">Pay with Card — Stripe</a>
+            <a href="#" class="btn btn-paypal btn-block btn-sm">Pay with PayPal</a>
+          </div>
+          <div class="select-hint">Tap to see best fit</div>
+        </div>
+
+        <div class="plan-card selected" data-plan="professional" tabindex="0">
+          <div class="plan-stamp">Best Value</div>
+          <div class="plan-name">Interview Professional</div>
+          <div class="plan-price">$149</div>
+          <p class="plan-desc">The complete interview brief for professionals who want to show up prepared and confident.</p>
+          <ul class="plan-list">
+            <li>Full role-readiness brief</li>
+            <li>STAR story bank</li>
+            <li>Technical and role-specific prep</li>
+            <li>Risk areas and weak spots</li>
+            <li>24-hour prep sheet</li>
+          </ul>
+          <div class="best-if"><div class="best-if-inner"><strong>Best if:</strong> this interview matters and you want a complete story, not just talking points — a full STAR story bank, technical prep, an honest read on your risk areas, and a 24-hour prep sheet to review right before you go in.</div></div>
+          <div class="plan-pay">
+            <a href="https://buy.stripe.com/bJeaEW4QD2Dv14V4S79fW06" class="btn btn-accent btn-block btn-sm">Pay with Card — Stripe</a>
+            <a href="#" class="btn btn-paypal btn-block btn-sm">Pay with PayPal</a>
+          </div>
+          <div class="select-hint">Tap to see best fit</div>
+        </div>
+
+        <div class="plan-card" data-plan="executive" tabindex="0">
+          <div class="plan-name">Executive Interview Strategy</div>
+          <div class="plan-price">$299</div>
+          <p class="plan-desc">A deeper prep package for higher-stakes interviews or candidates who want extra support.</p>
+          <ul class="plan-list">
+            <li>Everything in Interview Professional</li>
+            <li>Mock interview script</li>
+            <li>Answer refinement</li>
+            <li>Follow-up email draft</li>
+          </ul>
+          <div class="best-if"><div class="best-if-inner"><strong>Best if:</strong> it's a final-round, executive, or otherwise high-stakes interview and you want extra reps before the real thing — a mock script to rehearse out loud, refinement on your toughest answers, and a follow-up email drafted for you.</div></div>
+          <div class="plan-pay">
+            <a href="https://buy.stripe.com/5kQeVcfvhfqh7tj5Wb9fW00" class="btn btn-primary btn-block btn-sm">Pay with Card — Stripe</a>
+            <a href="#" class="btn btn-paypal btn-block btn-sm">Pay with PayPal</a>
+          </div>
+          <div class="select-hint">Tap to see best fit</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head center">
+        <div class="eyebrow">FAQ</div>
+        <h2>Clear answers before you share anything.</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item open">
+          <div class="faq-q"><span>Is my resume private?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>Your materials are used to prepare your fit check or interview brief. We do not sell your information. Share only resumes, public job postings, and career notes you have permission to use, and you can request deletion.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>How fast is delivery?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>Standard delivery is within 24 hours after usable materials are received. Rush delivery may be available when capacity allows.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Does this guarantee a job?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>No. AnswerInsight provides preparation materials only. We do not guarantee interviews, offers, promotions, or hiring outcomes.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>What do I receive?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>Depending on the package, you receive a structured brief with alignment notes, likely questions, STAR story angles, gaps to prepare for, and a final prep checklist.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>What happens after I pay?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>You complete secure checkout, submit your intake materials, and receive your brief within the promised delivery window after usable materials are received.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Are payments secure?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>Payments are handled through Stripe or PayPal checkout. AnswerInsight does not store your card number.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Can I pay with PayPal instead of a card?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>Yes. At checkout you can choose to pay through Stripe (credit or debit card) or through PayPal. Both are encrypted, and AnswerInsight never stores your full payment details.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Is the checkout the same for every package?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>Yes. All three packages use the same secure checkout flow — you choose your package, complete payment through Stripe or PayPal, and receive your intake link by email.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Is this a subscription?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>No. Current packages are one-time interview-prep purchases unless a future checkout page explicitly says otherwise.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY -->
+  <section class="privacy">
+    <div class="wrap">
+      <div class="section-head center">
+        <h2 style="font-size:26px;">Your documents stay private.</h2>
+      </div>
+      <div class="privacy-grid">
+        <div class="privacy-box">
+          <h4>How we handle your materials</h4>
+          <p>We use your materials only to prepare your fit check or interview brief. We do not sell your information. You can request deletion of submitted materials by contacting support. Do not upload confidential employer documents, client data, proprietary files, SSNs, passwords, bank details, or sensitive personal information — share only what you have clear permission to use.</p>
+        </div>
+        <div class="privacy-box">
+          <h4>What we don't promise</h4>
+          <p>AnswerInsight provides interview preparation materials only. We do not guarantee job offers, interview invitations, promotions, or hiring outcomes. Results depend on many factors outside our control, including your actual interview performance, company priorities, and the candidate pool.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
 
 <footer>
-  <div class="logo"><b>A</b>nswer<b>I</b>nsight</div>
-  © AnswerInsight. Role-specific interview prep for telecom and regulated careers.
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-tab"></span>AnswerInsight</div>
+        <p>Built by Nieves Labs — practical AI tools designed to help people solve real-world problems with confidence.</p>
+        <p>Privacy note: your materials are used for preparation and are not sold. Disclaimer: no guarantees of interviews, offers, promotions, or hiring outcomes.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Product</h5>
+          <a href="#how">How it works</a>
+          <a href="#sample">Sample brief</a>
+          <a href="#packages">Packages</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="https://nieves-labs.com">Nieves Labs</a>
+          <a href="mailto:support@answerinsight.com">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <a href="/privacy">Privacy policy</a>
+          <a href="/terms">Terms</a>
+          <a href="/refund">Refund policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© AnswerInsight. Role-specific interview prep for telecom, federal, finance, and regulated careers.</span>
+      <div class="footer-pay-badges">
+        <span>Stripe</span><span>PayPal</span>
+      </div>
+    </div>
+  </div>
 </footer>
 
 <script>
-  document.querySelectorAll('.step-card').forEach(card=>{
-    card.addEventListener('click', ()=>{
-      const wasOpen = card.classList.contains('is-open');
-      document.querySelectorAll('.step-card').forEach(c=>c.classList.remove('is-open'));
-      if(!wasOpen) card.classList.add('is-open');
+  // Mobile nav toggle
+  const burger = document.querySelector('.burger');
+  const navLinks = document.querySelector('.nav-links');
+  burger.addEventListener('click', () => {
+    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    navLinks.style.flexDirection = 'column';
+    navLinks.style.position = 'absolute';
+    navLinks.style.top = '64px';
+    navLinks.style.left = '0';
+    navLinks.style.right = '0';
+    navLinks.style.background = 'var(--bg)';
+    navLinks.style.padding = '20px 28px';
+    navLinks.style.borderBottom = '1px solid var(--line)';
+  });
+
+  // How-it-works: click/tap toggles active (in addition to hover on desktop)
+  document.querySelectorAll('.step-card').forEach(card => {
+    card.addEventListener('click', () => card.classList.toggle('active'));
+  });
+
+  // Sample preview tabs (image / video)
+  document.querySelectorAll('.preview-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.preview-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('.brief-preview').forEach(p => p.classList.add('hidden'));
+      document.getElementById(tab.dataset.target).classList.remove('hidden');
     });
   });
-  document.querySelectorAll('.pkg-card').forEach(card=>{
-    card.addEventListener('click', (e)=>{
-      if(e.target.closest('.pkg-cta')) return;
-      const wasOpen = card.classList.contains('is-open');
-      document.querySelectorAll('.pkg-card').forEach(c=>c.classList.remove('is-open'));
-      if(!wasOpen) card.classList.add('is-open');
+
+  // Cursor spotlight on the brief preview
+  document.querySelectorAll('.brief-preview').forEach(preview => {
+    preview.addEventListener('mousemove', (e) => {
+      const rect = preview.getBoundingClientRect();
+      preview.style.setProperty('--x', `${e.clientX - rect.left}px`);
+      preview.style.setProperty('--y', `${e.clientY - rect.top}px`);
+    });
+  });
+
+  // Plan card selection (radio-button behavior)
+  document.querySelectorAll('.plan-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return; // let payment links work normally
+      document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+    });
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+      }
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
     });
   });
 </script>
